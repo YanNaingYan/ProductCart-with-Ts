@@ -10,6 +10,7 @@ const Header = () => {
 if(!context){
     return null
 }
+const {carts}=context
 const {handleDrawer}=context
     const inputRef=useRef<HTMLInputElement>(null)
     const [isSearch,setIsSearch]=useState(true)
@@ -27,7 +28,7 @@ const {handleDrawer}=context
   <Container>
   <div className="flex justify-between items-center py-3">
         <div className="brand">
-          <h1 className="font-heading font-bold text-2xl">MMS Solutions</h1>
+          <h1 className="font-heading font-bold text-2xl">AAA Store</h1>
           <p className="text-neutral-500">E-commerce App</p>
         </div>
         <div className="control-btn flex gap-2">
@@ -89,7 +90,7 @@ const {handleDrawer}=context
               id="cartCountBadge"
               className="absolute bg-red-500 text-white flex justify-center items-center text-xs w-6 h-6 top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white"
             >
-           
+           {carts.length}
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

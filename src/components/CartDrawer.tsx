@@ -1,13 +1,16 @@
 import { useContext } from 'react'
 import { DataContext } from '../context/DataContext'
+import Cart from './Cart'
 
 
-const CartDrawer = () => {
+
+const CartDrawer= () => {
     const context= useContext(DataContext)
     if(!context){
         return null
     }
-    const {handleDrawer}=context
+    const {handleDrawer,carts}=context
+    
     return (
         <section
           className="cart-box flex flex-col border-s-2 border-neutral-600 fixed w-96 h-screen bg-white top-0 right-0 z-50 duration-300"
@@ -23,7 +26,7 @@ const CartDrawer = () => {
                     id="cartBodyCount"
                     className="text-xs w-4 h-4 bg-red-500 inline-flex justify-center items-center text-white"
                   >
-             
+             {carts.length}
                   </span>
                 </p>
               </div>
@@ -52,16 +55,24 @@ const CartDrawer = () => {
             </div>
           </div>
           <div className="cart-body flex-grow flex flex-col overflow-scroll p-5">
-           
-      
-            
+        {carts.length === 0 && (
+          <div className=" m-auto text-center w-3/4">
+            <img src="https://mms-cart.netlify.app/assets/empty-cart-587700a3.svg" />
+            <p className="font-heading">There is no item in cart</p>
           </div>
+        )}
+        {carts.length > 0 &&
+            carts.map((cart) => <Cart key={cart.product_id} cart={cart} />)}
+        
+      </div>
           <div className="cart-footer px-3 border-t-2 border-neutral-600">
             <div className="flex flex-col justify-start py-3">
               <div className="text-end">
                 <p className="text-neutral-500">Total Cost</p>
                 <h1 className="font-heading font-bold text-2xl">
-                  $ <span id="cartCostTotal"></span>
+                  $ <span id="cartCostTotal">
+                    {carts.reduce((pv,cv)=>pv+cv.cost,0).toFixed(2)}
+                  </span>
                 </h1>
               </div>
               <button

@@ -10,8 +10,7 @@ const CatagoryGroup = () => {
     const [categories, setCategory] = useState([]);
     const [ready, setReady] = useState(false);
     const fetchCatagory = async () => {
-     
-        try{
+             try{
             const res = await axios.get(`${location.origin}/src/mock/catagories.json`);
             const data = res.data;
             setCategory(data);

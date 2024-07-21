@@ -4,6 +4,7 @@ import { DataContext } from "./context/DataContext"
 import CartDrawer from "./components/CartDrawer"
 import CatagoryGroup from "./components/CatagoryGroup"
 import Spacer from "./components/Spacer"
+import ProductGroup from "./components/ProductGroup"
 
 
 
@@ -21,6 +22,7 @@ const {cartDrawer}=context
       <Header/>
       <Spacer/>
       <CatagoryGroup/>
+      <ProductGroup/>
       {cartDrawer && <CartDrawer/>}
     </div>
   )
